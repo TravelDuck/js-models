@@ -1,0 +1,34 @@
+{
+  "name": "getaway-models",
+  "authors": [
+    "Colin Stannard <colin.stannard@get-away.com>"
+  ],
+  "description": "Javascript models for use with get-away.com (travel provider)",
+  "main": "models.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "get-away",
+    "GetAway",
+    "Get Away",
+    "Travel"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/get-away/js-models.git"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/get-away/js-models",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-cli": "0.1.13"
+  }
+}
