@@ -4,7 +4,7 @@
     "Colin Stannard <colin.stannard@get-away.com>"
   ],
   "description": "Javascript models for use with get-away.com (travel provider)",
-  "main": "models.js",
+  "main": "dist/models.js",
   "moduleType": [
     "globals"
   ],
