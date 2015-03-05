@@ -12,6 +12,7 @@ function Amount(value, currency) {
   this.setCurrency(currency);
 }
 
+
 /**
  * Validate a given currency.
  *
@@ -33,6 +34,7 @@ Amount.validateCurrency = function(currency) {
 Amount.prototype.getValue = function() {
   return this.value;
 };
+
 
 /**
  * Set the value of this Amount.
@@ -68,8 +70,6 @@ Amount.prototype.symbol = function() {
     return null;
   }
 };
-
-
 /**
  * Are two given elements equal?
  *
@@ -210,14 +210,6 @@ Array.prototype.subtract = function (a) {
 Array.prototype.clone = function () {
   return this.slice(0);
 };
-
-
-
-
-
-
-
-
 CalendarDay.prototype.constructor = CalendarDay;
 
 /**
@@ -576,14 +568,6 @@ CalendarDay.today = function () {
 CalendarDay.prototype.dayOfWeek = function () {
   return new DayOfWeek(this.toDate().getDay());
 };
-
-
-
-
-
-
-
-
 CalendarDayRange.prototype.constructor = CalendarDayRange;
 
 /**
@@ -639,7 +623,7 @@ CalendarDayRange.prototype.setEndCalendarDay = function (endCalendarDay) {
  */
 CalendarDayRange.prototype.inRange = function (testCalendarDay) {
   return testCalendarDay.isGreaterThanOrEqualTo(this.getStartCalendarDay()) &&
-      testCalendarDay.isLessThanOrEqualTo(this.getEndCalendarDay());
+    testCalendarDay.isLessThanOrEqualTo(this.getEndCalendarDay());
 };
 
 /**
@@ -678,17 +662,6 @@ CalendarDayRange.prototype.getArrayOfAllCalendarDaysExcludingEndCalendarDay = fu
   calendarDays.remove(this.getEndCalendarDay());
   return calendarDays;
 };
-
-
-
-
-
-
-
-
-
-
-
 // Initialize CalendarMonth
 CalendarMonth.prototype.constructor = CalendarMonth;
 
@@ -873,7 +846,7 @@ CalendarMonth.prototype.setYear = function (year) {
 CalendarMonth.prototype.plusMonths = function (numberOfMonths) {
 
   var yearsToAdd = Math.floor((this.getMonth() - 1 + numberOfMonths) /
-      CalendarMonth.monthsInAYear);
+    CalendarMonth.monthsInAYear);
   var newYear = this.getYear() + yearsToAdd;
 
   var newMonth = this.getMonth() - 1 + numberOfMonths;
@@ -1010,15 +983,6 @@ CalendarMonth.prototype.days = function () {
   return this.calendarDayRange().getArrayOfAllCalendarDays();
 };
 
-
-
-
-
-
-
-
-
-
 CalendarMonthRange.prototype.constructor = CalendarMonthRange;
 
 /**
@@ -1074,7 +1038,7 @@ CalendarMonthRange.prototype.setEndCalendarMonth = function (endCalendarMonth) {
  */
 CalendarMonthRange.prototype.inRange = function (testCalendarMonth) {
   return testCalendarMonth.isGreaterThanOrEqualTo(this.getStartCalendarMonth()) &&
-      testCalendarMonth.isLessThanOrEqualTo(this.getEndCalendarMonth());
+    testCalendarMonth.isLessThanOrEqualTo(this.getEndCalendarMonth());
 };
 
 /**
@@ -1097,15 +1061,6 @@ CalendarMonthRange.prototype.getArrayOfAllCalendarMonths = function () {
 
   return CalendarMonths;
 };
-
-
-
-
-
-
-
-
-
 DayOfWeek.prototype.constructor = DayOfWeek;
 
 
@@ -1137,17 +1092,6 @@ DayOfWeek.prototype.next = function() {
 DayOfWeek.prototype.previous = function() {
   return new DayOfWeek((this.getNumber() + 6) % 7);
 };
-
-
-
-
-
-
-
-
-
-
-
 GetAway_AvailabilityCalendar.prototype.constructor = GetAway_AvailabilityCalendar;
 
 /**
@@ -2352,19 +2296,19 @@ GetAway_AvailabilityCalendar.prototype.loadCalculatedAmountAccordingToServer = f
       selectedCalendarDayRange, this.getNumberOfAdults(), this.getNumberOfChildren(), this.getNumberOfInfants(),
       this.getNumberOfPets(), function (response) {
 
-      $this.setCalculatedAmountAccordingToServer(response);
+        $this.setCalculatedAmountAccordingToServer(response);
 
-      // Trigger update calculated Amount start event.
-      $this.getEventFunctions().onUpdateCalculatedAmountComplete();
+        // Trigger update calculated Amount start event.
+        $this.getEventFunctions().onUpdateCalculatedAmountComplete();
 
-      successCallback();
-    }, function () {
+        successCallback();
+      }, function () {
 
-      // Trigger update calculated Amount error event.
-      $this.getEventFunctions().onUpdateCalculatedAmountError();
+        // Trigger update calculated Amount error event.
+        $this.getEventFunctions().onUpdateCalculatedAmountError();
 
-      failureCallback();
-    });
+        failureCallback();
+      });
 
   } else {
 
@@ -2674,12 +2618,6 @@ function GetAway_Photo(id, smallSizeUrl, mediumSizeUrl, largeSizeUrl, originalSi
   this.largeSizeUrl = largeSizeUrl;
   this.originalSizeUrl = originalSizeUrl;
 }
-
-
-
-
-
-
 GetAway_Property.prototype.constructor = GetAway_Property;
 
 GetAway_Property.searchInProgress = null;
@@ -3218,25 +3156,6 @@ GetAway_Property.search = function(
     }
   });
 };
-
-
-
-
-
-
-
-GetAway_Property_Booking_Guest.prototype.constructor = GetAway_Property_Booking_Guest;
-
-function GetAway_Property_Booking_Guest(propertyId) {
-  this.setId(propertyId);
-
-}
-
-
-
-
-
-
 GetAway_Property_Booking_Request.prototype.constructor = GetAway_Property_Booking_Request;
 
 function GetAway_Property_Booking_Request(property, dateRange) {
@@ -3263,10 +3182,8 @@ GetAway_Property_Booking_Request.prototype.submit = function(successCallback, fa
     timeout: 10000,
     data: {
       "property-id": this.property.id,
-      "date-range": {
-        "start-date": this.dateRange.getStartCalendarDay().toYearMonthDayString(),
-        "end-date": this.dateRange.getEndCalendarDay().toYearMonthDayString()
-      }
+      "start-date": this.dateRange.getStartCalendarDay().toYearMonthDayString(),
+      "end-date": this.dateRange.getEndCalendarDay().toYearMonthDayString()
     },
     success: function(response) {
 
@@ -3282,3 +3199,8 @@ GetAway_Property_Booking_Request.prototype.submit = function(successCallback, fa
   });
 
 };
+GetAway_Property_Booking_Guest.prototype.constructor = GetAway_Property_Booking_Guest;
+
+function GetAway_Property_Booking_Guest(propertyId) {
+  this.setId(propertyId);
+}
