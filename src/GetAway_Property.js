@@ -470,7 +470,68 @@ GetAway_Property.prototype.colouredAvailability = function(calendarMonthRange, s
 };
 
 
+GetAway_Property.boundarySearch = function(
+  successCallback, failureCallback, top, left, bottom, right, numberOfResults, page
+  ) {
 
+  // Abort any existing search in progress as we intend to replace it.
+  if(GetAway_Property.searchInProgress) {
+    GetAway_Property.searchInProgress.abort();
+  }
+
+  // Establish call backs
+  successCallback = successCallback != null ? successCallback : function() {};
+  failureCallback = failureCallback != null ? failureCallback : function() {};
+
+  GetAway_Property.searchInProgress = $.ajax({
+    url: 'https://get-away.com/api/rest/v1/property/search/boundary?jsoncallback=?',
+    type: 'GET',
+    dataType: 'jsonp',
+    crossDomain: true,
+    cache: false,
+    timeout: 10000,
+    data: {
+      "top": top,
+      "left": left,
+      "bottom": bottom,
+      "right": right,
+      "numberOfResults": numberOfResults,
+      "page": page
+    },
+    success: function (response) {
+
+      // Check for error
+      if (response.errors.length > 0) {
+        failureCallback();
+        return;
+      }
+
+      var properties = response.payload;
+      if(Object.prototype.toString.call(properties) === '[object Array]') {
+
+        //properties = properties.map(function(propertyJsonObject) {
+        //  return GetAway_Property.initialiseFromJsonObject(propertyJsonObject);
+        //});
+
+        successCallback(properties);
+
+      } else {
+        failureCallback();
+      }
+    },
+    error: function (jqXHR, textStatus) {
+
+      // For any error other than abort mark as a failure.
+      if(textStatus != "abort") {
+        failureCallback();
+      }
+    },
+    complete: function() {
+      GetAway_Property.searchInProgress = null;
+    }
+  });
+
+};
 
 
 /**
