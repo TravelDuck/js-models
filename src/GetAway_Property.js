@@ -506,18 +506,7 @@ GetAway_Property.boundarySearch = function(
         return;
       }
 
-      var properties = response.payload;
-      if(Object.prototype.toString.call(properties) === '[object Array]') {
-
-        //properties = properties.map(function(propertyJsonObject) {
-        //  return GetAway_Property.initialiseFromJsonObject(propertyJsonObject);
-        //});
-
-        successCallback(properties);
-
-      } else {
-        failureCallback();
-      }
+      successCallback(response.payload);
     },
     error: function (jqXHR, textStatus) {
 

@@ -68,5 +68,6 @@ module.exports = function(grunt) {
 
   // Task definition
   grunt.registerTask('default', ['watch']);
+  grunt.registerTask('build', ['concat:all','uglify:all']);
 
 };
