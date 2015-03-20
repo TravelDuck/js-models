@@ -1,12 +1,12 @@
-GetAway_Property_Booking_Request.prototype.constructor = GetAway_Property_Booking_Request;
+TravelDuck_Property_Booking_Request.prototype.constructor = TravelDuck_Property_Booking_Request;
 
-function GetAway_Property_Booking_Request(property, dateRange) {
+function TravelDuck_Property_Booking_Request(property, dateRange) {
   this.property = property;
   this.dateRange = dateRange;
 }
 
 
-GetAway_Property_Booking_Request.prototype.submit = function(successCallback, failureCallback) {
+TravelDuck_Property_Booking_Request.prototype.submit = function(successCallback, failureCallback) {
 
   // Ensure success and failure callbacks exist
   successCallback = !successCallback ? function () {

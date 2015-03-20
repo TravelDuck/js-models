@@ -1,4 +1,4 @@
-GetAway_Photo.prototype.constructor = GetAway_Photo;
+TravelDuck_Photo.prototype.constructor = TravelDuck_Photo;
 
 
 /**
@@ -13,7 +13,7 @@ GetAway_Photo.prototype.constructor = GetAway_Photo;
  * @param title
  * @param description
  */
-function GetAway_Photo(id, smallSizeUrl, mediumSizeUrl, largeSizeUrl, originalSizeUrl, title, description) {
+function TravelDuck_Photo(id, smallSizeUrl, mediumSizeUrl, largeSizeUrl, originalSizeUrl, title, description) {
   this.id = id;
   this.title = title;
   this.description = description;

@@ -1,6 +1,6 @@
-GetAway_Property.prototype.constructor = GetAway_Property;
+TravelDuck_Property.prototype.constructor = TravelDuck_Property;
 
-GetAway_Property.searchInProgress = null;
+TravelDuck_Property.searchInProgress = null;
 
 /**
  * Constructor - requires the property id.
@@ -8,7 +8,7 @@ GetAway_Property.searchInProgress = null;
  * @constructor
  * @param propertyId
  */
-function GetAway_Property(propertyId) {
+function TravelDuck_Property(propertyId) {
   this.setId(propertyId);
 
 
@@ -19,9 +19,9 @@ function GetAway_Property(propertyId) {
  * Initialise a new property given a json object.
  * @param jsonObject
  */
-GetAway_Property.initialiseFromJsonObject = function(jsonObject) {
+TravelDuck_Property.initialiseFromJsonObject = function(jsonObject) {
 
-  var property = new GetAway_Property(jsonObject.id);
+  var property = new TravelDuck_Property(jsonObject.id);
 
   if(jsonObject["name"]) {
     property.setName(jsonObject["name"]);
@@ -49,7 +49,7 @@ GetAway_Property.initialiseFromJsonObject = function(jsonObject) {
     if(ownerPropertyInformation["photos"]) {
       var photos = ownerPropertyInformation["photos"];
       photos = photos.map(function(photoJsonObject) {
-        return new GetAway_Photo(
+        return new TravelDuck_Photo(
           photoJsonObject["id"], photoJsonObject["small-size-url"], photoJsonObject["medium-size-url"],
           photoJsonObject["large-size-url"], photoJsonObject["original-size-url"]
         );
@@ -67,7 +67,7 @@ GetAway_Property.initialiseFromJsonObject = function(jsonObject) {
  *
  * @returns {Number}
  */
-GetAway_Property.prototype.getId = function() {
+TravelDuck_Property.prototype.getId = function() {
   return parseInt(this.id);
 };
 
@@ -76,7 +76,7 @@ GetAway_Property.prototype.getId = function() {
  *
  * @param id
  */
-GetAway_Property.prototype.setId = function(id) {
+TravelDuck_Property.prototype.setId = function(id) {
   // TODO: Validate the id is an integer > 0
   this.id = id;
 };
@@ -87,7 +87,7 @@ GetAway_Property.prototype.setId = function(id) {
  *
  * @returns {string}
  */
-GetAway_Property.prototype.getName = function() {
+TravelDuck_Property.prototype.getName = function() {
   return this.name;
 };
 
@@ -96,7 +96,7 @@ GetAway_Property.prototype.getName = function() {
  *
  * @param name
  */
-GetAway_Property.prototype.setName = function(name) {
+TravelDuck_Property.prototype.setName = function(name) {
   this.name = name;
 };
 
@@ -107,7 +107,7 @@ GetAway_Property.prototype.setName = function(name) {
  *
  * @returns {number}
  */
-GetAway_Property.prototype.getNumberOfDoubleBedrooms = function() {
+TravelDuck_Property.prototype.getNumberOfDoubleBedrooms = function() {
   return this.numberOfDoubleBedrooms;
 };
 
@@ -117,7 +117,7 @@ GetAway_Property.prototype.getNumberOfDoubleBedrooms = function() {
  *
  * @param numberOfDoubleBedrooms
  */
-GetAway_Property.prototype.setNumberOfDoubleBedrooms = function(numberOfDoubleBedrooms) {
+TravelDuck_Property.prototype.setNumberOfDoubleBedrooms = function(numberOfDoubleBedrooms) {
   this.numberOfDoubleBedrooms = numberOfDoubleBedrooms;
 };
 
@@ -127,7 +127,7 @@ GetAway_Property.prototype.setNumberOfDoubleBedrooms = function(numberOfDoubleBe
  *
  * @returns {number}
  */
-GetAway_Property.prototype.getNumberOfTwinBedrooms = function() {
+TravelDuck_Property.prototype.getNumberOfTwinBedrooms = function() {
   return this.numberOfTwinBedrooms;
 };
 
@@ -137,7 +137,7 @@ GetAway_Property.prototype.getNumberOfTwinBedrooms = function() {
  *
  * @param numberOfTwinBedrooms
  */
-GetAway_Property.prototype.setNumberOfTwinBedrooms = function(numberOfTwinBedrooms) {
+TravelDuck_Property.prototype.setNumberOfTwinBedrooms = function(numberOfTwinBedrooms) {
   this.numberOfTwinBedrooms = numberOfTwinBedrooms;
 };
 
@@ -147,7 +147,7 @@ GetAway_Property.prototype.setNumberOfTwinBedrooms = function(numberOfTwinBedroo
  *
  * @returns {number}
  */
-GetAway_Property.prototype.getNumberOfSingleBedrooms = function() {
+TravelDuck_Property.prototype.getNumberOfSingleBedrooms = function() {
   return this.numberOfSingleBedrooms;
 };
 
@@ -157,7 +157,7 @@ GetAway_Property.prototype.getNumberOfSingleBedrooms = function() {
  *
  * @param numberOfSingleBedrooms
  */
-GetAway_Property.prototype.setNumberOfSingleBedrooms = function(numberOfSingleBedrooms) {
+TravelDuck_Property.prototype.setNumberOfSingleBedrooms = function(numberOfSingleBedrooms) {
   this.numberOfSingleBedrooms = numberOfSingleBedrooms;
 };
 
@@ -167,7 +167,7 @@ GetAway_Property.prototype.setNumberOfSingleBedrooms = function(numberOfSingleBe
  *
  * @returns {number}
  */
-GetAway_Property.prototype.getNumberOfPutAwayBeds = function() {
+TravelDuck_Property.prototype.getNumberOfPutAwayBeds = function() {
   return this.numberOfPutAwayBeds;
 };
 
@@ -176,7 +176,7 @@ GetAway_Property.prototype.getNumberOfPutAwayBeds = function() {
  *
  * @param numberOfPutAwayBeds
  */
-GetAway_Property.prototype.setNumberOfPutAwayBeds = function(numberOfPutAwayBeds) {
+TravelDuck_Property.prototype.setNumberOfPutAwayBeds = function(numberOfPutAwayBeds) {
   this.numberOfPutAwayBeds = numberOfPutAwayBeds;
 };
 
@@ -186,7 +186,7 @@ GetAway_Property.prototype.setNumberOfPutAwayBeds = function(numberOfPutAwayBeds
  *
  * @returns {number}
  */
-GetAway_Property.prototype.getMaximumSleepingCapacity = function() {
+TravelDuck_Property.prototype.getMaximumSleepingCapacity = function() {
   return this.maximumSleepingCapacity;
 };
 
@@ -196,7 +196,7 @@ GetAway_Property.prototype.getMaximumSleepingCapacity = function() {
  *
  * @param maximumSleepingCapacity
  */
-GetAway_Property.prototype.setMaximumSleepingCapacity = function(maximumSleepingCapacity) {
+TravelDuck_Property.prototype.setMaximumSleepingCapacity = function(maximumSleepingCapacity) {
   this.maximumSleepingCapacity = maximumSleepingCapacity;
 };
 
@@ -207,7 +207,7 @@ GetAway_Property.prototype.setMaximumSleepingCapacity = function(maximumSleeping
  *
  * @returns {array}
  */
-GetAway_Property.prototype.getPhotos = function() {
+TravelDuck_Property.prototype.getPhotos = function() {
   return this.photos;
 };
 
@@ -217,7 +217,7 @@ GetAway_Property.prototype.getPhotos = function() {
  *
  * @param photos
  */
-GetAway_Property.prototype.setPhotos = function(photos) {
+TravelDuck_Property.prototype.setPhotos = function(photos) {
   this.photos = photos;
 };
 
@@ -225,9 +225,9 @@ GetAway_Property.prototype.setPhotos = function(photos) {
 /**
  * Get the nth photo of this property.
  *
- * @returns {GetAway_Photo|null}
+ * @returns {TravelDuck_Photo|null}
  */
-GetAway_Property.prototype.getPhoto = function(n) {
+TravelDuck_Property.prototype.getPhoto = function(n) {
   return this.getPhotos()[n-1];
 };
 
@@ -245,7 +245,7 @@ GetAway_Property.prototype.getPhoto = function(n) {
  * @param numberOfInfants
  * @param numberOfPets
  */
-GetAway_Property.prototype.bookingQuote = function (
+TravelDuck_Property.prototype.bookingQuote = function (
   calendarDayRange, numberOfAdults, numberOfChildren, numberOfInfants, numberOfPets, successCallback, failureCallback
   ) {
 
@@ -309,7 +309,7 @@ GetAway_Property.prototype.bookingQuote = function (
  * @param successCallback
  * @param failureCallback
  */
-GetAway_Property.prototype.availability = function(calendarMonthRange, successCallback, failureCallback) {
+TravelDuck_Property.prototype.availability = function(calendarMonthRange, successCallback, failureCallback) {
 
   // Ensure success and failure callbacks exist
   successCallback = !successCallback ? function () {
@@ -366,7 +366,7 @@ GetAway_Property.prototype.availability = function(calendarMonthRange, successCa
  * @param successCallback
  * @param failureCallback
  */
-GetAway_Property.prototype.colouredAvailability = function(calendarMonthRange, successCallback, failureCallback) {
+TravelDuck_Property.prototype.colouredAvailability = function(calendarMonthRange, successCallback, failureCallback) {
 
   var months = calendarMonthRange.getArrayOfAllCalendarMonths();
 
@@ -470,20 +470,20 @@ GetAway_Property.prototype.colouredAvailability = function(calendarMonthRange, s
 };
 
 
-GetAway_Property.boundarySearch = function(
+TravelDuck_Property.boundarySearch = function(
   successCallback, failureCallback, top, left, bottom, right, numberOfResults, page
   ) {
 
   // Abort any existing search in progress as we intend to replace it.
-  if(GetAway_Property.searchInProgress) {
-    GetAway_Property.searchInProgress.abort();
+  if(TravelDuck_Property.searchInProgress) {
+    TravelDuck_Property.searchInProgress.abort();
   }
 
   // Establish call backs
   successCallback = successCallback != null ? successCallback : function() {};
   failureCallback = failureCallback != null ? failureCallback : function() {};
 
-  GetAway_Property.searchInProgress = $.ajax({
+  TravelDuck_Property.searchInProgress = $.ajax({
     url: 'https://get-away.com/api/rest/v1/property/search/boundary?jsoncallback=?',
     type: 'GET',
     dataType: 'jsonp',
@@ -516,7 +516,7 @@ GetAway_Property.boundarySearch = function(
       }
     },
     complete: function() {
-      GetAway_Property.searchInProgress = null;
+      TravelDuck_Property.searchInProgress = null;
     }
   });
 
@@ -531,13 +531,13 @@ GetAway_Property.boundarySearch = function(
  * @param noResultsCallback
  * @param searchCriteria
  */
-GetAway_Property.search = function(
+TravelDuck_Property.search = function(
   searchCriteria, successCallback, failureCallback, noResultsCallback
   ) {
 
   // Abort any existing search in progress as we intend to replace it.
-  if(GetAway_Property.searchInProgress) {
-    GetAway_Property.searchInProgress.abort();
+  if(TravelDuck_Property.searchInProgress) {
+    TravelDuck_Property.searchInProgress.abort();
   }
 
   // Establish call backs
@@ -545,7 +545,7 @@ GetAway_Property.search = function(
   failureCallback = failureCallback != null ? failureCallback : function() {};
   noResultsCallback = noResultsCallback != null ? noResultsCallback : function() {};
 
-  GetAway_Property.searchInProgress = $.ajax({
+  TravelDuck_Property.searchInProgress = $.ajax({
     url: 'https://get-away.com/api/rest/v1/property/search-results?jsoncallback=?',
     type: 'GET',
     dataType: 'jsonp',
@@ -564,7 +564,7 @@ GetAway_Property.search = function(
         } else {
 
           properties = properties.map(function(propertyJsonObject) {
-            return GetAway_Property.initialiseFromJsonObject(propertyJsonObject);
+            return TravelDuck_Property.initialiseFromJsonObject(propertyJsonObject);
           });
 
           successCallback(response.searchIdentifier, properties);
@@ -582,7 +582,7 @@ GetAway_Property.search = function(
       }
     },
     complete: function() {
-      GetAway_Property.searchInProgress = null;
+      TravelDuck_Property.searchInProgress = null;
     }
   });
 };

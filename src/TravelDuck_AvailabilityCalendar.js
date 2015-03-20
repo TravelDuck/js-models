@@ -1,11 +1,11 @@
-GetAway_AvailabilityCalendar.prototype.constructor = GetAway_AvailabilityCalendar;
+TravelDuck_AvailabilityCalendar.prototype.constructor = TravelDuck_AvailabilityCalendar;
 
 /**
  * Enum of modes a calendar can be in.
  *
  * @type {{DISPLAY: number, SELECT_START: number, SELECT_END: number}}
  */
-GetAway_AvailabilityCalendar.Modes = {
+TravelDuck_AvailabilityCalendar.Modes = {
   DISPLAY: 0,
   SELECT_START: 1,
   SELECT_END: 2
@@ -16,7 +16,7 @@ GetAway_AvailabilityCalendar.Modes = {
  *
  * @type {{MONDAY: number, TUESDAY: number, WEDNESDAY: number, THURSDAY: number, FRIDAY: number, SATURDAY: number, SUNDAY: number}}
  */
-GetAway_AvailabilityCalendar.ChangeOverDays = {
+TravelDuck_AvailabilityCalendar.ChangeOverDays = {
   MONDAY: 1,
   TUESDAY: 2,
   WEDNESDAY: 3,
@@ -29,7 +29,7 @@ GetAway_AvailabilityCalendar.ChangeOverDays = {
 /**
  * Get the default settings of this calendar.
  */
-GetAway_AvailabilityCalendar.DefaultSettings = function () {
+TravelDuck_AvailabilityCalendar.DefaultSettings = function () {
 
   return {
 
@@ -44,8 +44,8 @@ GetAway_AvailabilityCalendar.DefaultSettings = function () {
     monthsToBufferToLeft: 2,
     monthsToBufferToRight: 2,
 
-    changeOverDay: GetAway_AvailabilityCalendar.ChangeOverDays.SATURDAY,
-    mode: GetAway_AvailabilityCalendar.Modes.DISPLAY,
+    changeOverDay: TravelDuck_AvailabilityCalendar.ChangeOverDays.SATURDAY,
+    mode: TravelDuck_AvailabilityCalendar.Modes.DISPLAY,
 
     numberOfAdults: 1,
     numberOfChildren: 0,
@@ -58,7 +58,7 @@ GetAway_AvailabilityCalendar.DefaultSettings = function () {
 /**
  * Get the default functions of this calendar.
  */
-GetAway_AvailabilityCalendar.DefaultFunctions = function () {
+TravelDuck_AvailabilityCalendar.DefaultFunctions = function () {
   return {
 
     /*
@@ -128,7 +128,7 @@ GetAway_AvailabilityCalendar.DefaultFunctions = function () {
  * @param customSettings
  * @param customFunctions
  */
-function GetAway_AvailabilityCalendar(displayElement, property, customSettings, customFunctions) {
+function TravelDuck_AvailabilityCalendar(displayElement, property, customSettings, customFunctions) {
 
   // Required settings
   this.setDisplayElement(displayElement);
@@ -137,14 +137,14 @@ function GetAway_AvailabilityCalendar(displayElement, property, customSettings, 
   // Generate settings to be used
   this.setSettings($.extend(
     {},
-    GetAway_AvailabilityCalendar.DefaultSettings(),
+    TravelDuck_AvailabilityCalendar.DefaultSettings(),
     customSettings
   ));
 
   // Generate functions to be used
   this.setEventFunctions($.extend(
     {},
-    GetAway_AvailabilityCalendar.DefaultFunctions(),
+    TravelDuck_AvailabilityCalendar.DefaultFunctions(),
     customFunctions
   ));
 
@@ -170,38 +170,38 @@ function GetAway_AvailabilityCalendar(displayElement, property, customSettings, 
  **********************************************************************************************************************/
 
 
-GetAway_AvailabilityCalendar.prototype.getNumberOfAdults = function () {
+TravelDuck_AvailabilityCalendar.prototype.getNumberOfAdults = function () {
   return this.getSettings().numberOfAdults;
 };
 
-GetAway_AvailabilityCalendar.prototype.setNumberOfAdults = function (numberOfAdults) {
+TravelDuck_AvailabilityCalendar.prototype.setNumberOfAdults = function (numberOfAdults) {
   this.getSettings().numberOfAdults = numberOfAdults;
   this.refreshCalculatedAmount();
 };
 
-GetAway_AvailabilityCalendar.prototype.getNumberOfChildren = function () {
+TravelDuck_AvailabilityCalendar.prototype.getNumberOfChildren = function () {
   return this.getSettings().numberOfChildren;
 };
 
-GetAway_AvailabilityCalendar.prototype.setNumberOfChildren = function (numberOfChildren) {
+TravelDuck_AvailabilityCalendar.prototype.setNumberOfChildren = function (numberOfChildren) {
   this.getSettings().numberOfChildren = numberOfChildren;
   this.refreshCalculatedAmount();
 };
 
-GetAway_AvailabilityCalendar.prototype.getNumberOfInfants = function () {
+TravelDuck_AvailabilityCalendar.prototype.getNumberOfInfants = function () {
   return this.getSettings().numberOfInfants;
 };
 
-GetAway_AvailabilityCalendar.prototype.setNumberOfInfants = function (numberOfInfants) {
+TravelDuck_AvailabilityCalendar.prototype.setNumberOfInfants = function (numberOfInfants) {
   this.getSettings().numberOfInfants = numberOfInfants;
   this.refreshCalculatedAmount();
 };
 
-GetAway_AvailabilityCalendar.prototype.getNumberOfPets = function () {
+TravelDuck_AvailabilityCalendar.prototype.getNumberOfPets = function () {
   return this.getSettings().numberOfPets;
 };
 
-GetAway_AvailabilityCalendar.prototype.setNumberOfPets = function (numberOfPets) {
+TravelDuck_AvailabilityCalendar.prototype.setNumberOfPets = function (numberOfPets) {
   this.getSettings().numberOfPets = numberOfPets;
   this.refreshCalculatedAmount();
 };
@@ -214,7 +214,7 @@ GetAway_AvailabilityCalendar.prototype.setNumberOfPets = function (numberOfPets)
  *
  * @returns {*}
  */
-GetAway_AvailabilityCalendar.prototype.getDisplayElement = function () {
+TravelDuck_AvailabilityCalendar.prototype.getDisplayElement = function () {
   return this.displayElement;
 };
 
@@ -223,16 +223,16 @@ GetAway_AvailabilityCalendar.prototype.getDisplayElement = function () {
  *
  * @param displayElement
  */
-GetAway_AvailabilityCalendar.prototype.setDisplayElement = function (displayElement) {
+TravelDuck_AvailabilityCalendar.prototype.setDisplayElement = function (displayElement) {
   this.displayElement = displayElement;
 };
 
 /**
  * Get the property which this calendar displays the availability of.
  *
- * @return  GetAway_Property
+ * @return  TravelDuck_Property
  */
-GetAway_AvailabilityCalendar.prototype.getProperty = function () {
+TravelDuck_AvailabilityCalendar.prototype.getProperty = function () {
   return this.property;
 };
 
@@ -241,7 +241,7 @@ GetAway_AvailabilityCalendar.prototype.getProperty = function () {
  *
  * @param property
  */
-GetAway_AvailabilityCalendar.prototype.setProperty = function (property) {
+TravelDuck_AvailabilityCalendar.prototype.setProperty = function (property) {
   this.property = property;
 };
 
@@ -250,7 +250,7 @@ GetAway_AvailabilityCalendar.prototype.setProperty = function (property) {
  *
  * @returns {*}
  */
-GetAway_AvailabilityCalendar.prototype.getSettings = function () {
+TravelDuck_AvailabilityCalendar.prototype.getSettings = function () {
   return this.settings;
 };
 
@@ -259,7 +259,7 @@ GetAway_AvailabilityCalendar.prototype.getSettings = function () {
  *
  * @param settings
  */
-GetAway_AvailabilityCalendar.prototype.setSettings = function (settings) {
+TravelDuck_AvailabilityCalendar.prototype.setSettings = function (settings) {
   this.settings = settings;
 };
 
@@ -268,7 +268,7 @@ GetAway_AvailabilityCalendar.prototype.setSettings = function (settings) {
  *
  * @returns {*}
  */
-GetAway_AvailabilityCalendar.prototype.getEventFunctions = function () {
+TravelDuck_AvailabilityCalendar.prototype.getEventFunctions = function () {
   return this.functions;
 };
 
@@ -277,7 +277,7 @@ GetAway_AvailabilityCalendar.prototype.getEventFunctions = function () {
  *
  * @param functions
  */
-GetAway_AvailabilityCalendar.prototype.setEventFunctions = function (functions) {
+TravelDuck_AvailabilityCalendar.prototype.setEventFunctions = function (functions) {
   this.functions = functions;
 };
 
@@ -287,7 +287,7 @@ GetAway_AvailabilityCalendar.prototype.setEventFunctions = function (functions) 
  *
  * @returns {CalendarDayRange}
  */
-GetAway_AvailabilityCalendar.prototype.getSelectedCalendarDayRangeStartCalendarDay = function () {
+TravelDuck_AvailabilityCalendar.prototype.getSelectedCalendarDayRangeStartCalendarDay = function () {
   return this.selectedCalendarDayRangeStartCalendarDay;
 };
 
@@ -296,7 +296,7 @@ GetAway_AvailabilityCalendar.prototype.getSelectedCalendarDayRangeStartCalendarD
  *
  * @param startCalendarDay
  */
-GetAway_AvailabilityCalendar.prototype.setSelectedCalendarDayRangeStartCalendarDay = function (startCalendarDay) {
+TravelDuck_AvailabilityCalendar.prototype.setSelectedCalendarDayRangeStartCalendarDay = function (startCalendarDay) {
   this.selectedCalendarDayRangeStartCalendarDay = startCalendarDay;
 
   // Trigger change selected CalendarDayRange start CalendarDay event.
@@ -311,7 +311,7 @@ GetAway_AvailabilityCalendar.prototype.setSelectedCalendarDayRangeStartCalendarD
 /**
  * Reset the start CalendarDay of the selected CalendarDayRange of this AvailabilityCalendar.
  */
-GetAway_AvailabilityCalendar.prototype.resetSelectedCalendarDayRangeStartCalendarDay = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetSelectedCalendarDayRangeStartCalendarDay = function () {
   this.selectedCalendarDayRangeStartCalendarDay = null;
 
   // Trigger reset selected CalendarDayRange start CalendarDay event.
@@ -331,7 +331,7 @@ GetAway_AvailabilityCalendar.prototype.resetSelectedCalendarDayRangeStartCalenda
  *
  * @returns {CalendarDayRange}
  */
-GetAway_AvailabilityCalendar.prototype.getSelectedCalendarDayRangeEndCalendarDay = function () {
+TravelDuck_AvailabilityCalendar.prototype.getSelectedCalendarDayRangeEndCalendarDay = function () {
   return this.selectedCalendarDayRangeEndCalendarDay;
 };
 
@@ -340,7 +340,7 @@ GetAway_AvailabilityCalendar.prototype.getSelectedCalendarDayRangeEndCalendarDay
  *
  * @param endCalendarDay
  */
-GetAway_AvailabilityCalendar.prototype.setSelectedCalendarDayRangeEndCalendarDay = function (endCalendarDay) {
+TravelDuck_AvailabilityCalendar.prototype.setSelectedCalendarDayRangeEndCalendarDay = function (endCalendarDay) {
   this.selectedCalendarDayRangeEndCalendarDay = endCalendarDay;
 
   // Trigger change selected CalendarDayRange end CalendarDay event.
@@ -355,7 +355,7 @@ GetAway_AvailabilityCalendar.prototype.setSelectedCalendarDayRangeEndCalendarDay
 /**
  * Reset the end CalendarDay of the selected CalendarDayRange of this AvailabilityCalendar.
  */
-GetAway_AvailabilityCalendar.prototype.resetSelectedCalendarDayRangeEndCalendarDay = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetSelectedCalendarDayRangeEndCalendarDay = function () {
   this.selectedCalendarDayRangeEndCalendarDay = null;
 
   // Trigger reset selected CalendarDayRange end CalendarDay event.
@@ -375,7 +375,7 @@ GetAway_AvailabilityCalendar.prototype.resetSelectedCalendarDayRangeEndCalendarD
  *
  * @returns {CalendarDayRange}
  */
-GetAway_AvailabilityCalendar.prototype.getSelectedCalendarDayRange = function () {
+TravelDuck_AvailabilityCalendar.prototype.getSelectedCalendarDayRange = function () {
 
   // Return null if incomplete range.
   if (!this.getSelectedCalendarDayRangeStartCalendarDay() || !this.getSelectedCalendarDayRangeEndCalendarDay()) {
@@ -392,7 +392,7 @@ GetAway_AvailabilityCalendar.prototype.getSelectedCalendarDayRange = function ()
  *
  * @param calendarDayRange
  */
-GetAway_AvailabilityCalendar.prototype.setSelectedCalendarDayRange = function (calendarDayRange) {
+TravelDuck_AvailabilityCalendar.prototype.setSelectedCalendarDayRange = function (calendarDayRange) {
 
   // Reset the selected CalendarDayRange start and end CalendarDays - suppress event triggers.
   var suppressResetEventTriggers = true;
@@ -406,7 +406,7 @@ GetAway_AvailabilityCalendar.prototype.setSelectedCalendarDayRange = function (c
 /**
  * Reset the selected CalendarDayRange of this AvailabilityCalendar.
  */
-GetAway_AvailabilityCalendar.prototype.resetSelectedCalendarDayRange = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetSelectedCalendarDayRange = function () {
   this.resetSelectedCalendarDayRangeStartCalendarDay();
   this.resetSelectedCalendarDayRangeEndCalendarDay();
 
@@ -421,7 +421,7 @@ GetAway_AvailabilityCalendar.prototype.resetSelectedCalendarDayRange = function 
 /**
  * This function is called when the selected CalendarDayRange is changed.
  */
-GetAway_AvailabilityCalendar.prototype.selectedCalendarDayRangeChanged = function () {
+TravelDuck_AvailabilityCalendar.prototype.selectedCalendarDayRangeChanged = function () {
 
   // Trigger event function.
   this.getEventFunctions().onSelectedCalendarDayRangeChange();
@@ -434,7 +434,7 @@ GetAway_AvailabilityCalendar.prototype.selectedCalendarDayRangeChanged = functio
  *
  * @returns {CalendarDayRange}
  */
-GetAway_AvailabilityCalendar.prototype.getHighlightedCalendarDayRangeStartCalendarDay = function () {
+TravelDuck_AvailabilityCalendar.prototype.getHighlightedCalendarDayRangeStartCalendarDay = function () {
   return this.highlightedCalendarDayRangeStartCalendarDay;
 };
 
@@ -443,7 +443,7 @@ GetAway_AvailabilityCalendar.prototype.getHighlightedCalendarDayRangeStartCalend
  *
  * @param startCalendarDay
  */
-GetAway_AvailabilityCalendar.prototype.setHighlightedCalendarDayRangeStartCalendarDay = function (startCalendarDay) {
+TravelDuck_AvailabilityCalendar.prototype.setHighlightedCalendarDayRangeStartCalendarDay = function (startCalendarDay) {
   this.highlightedCalendarDayRangeStartCalendarDay = startCalendarDay;
 
   // Trigger change highlighted CalendarDayRange start CalendarDay event.
@@ -458,7 +458,7 @@ GetAway_AvailabilityCalendar.prototype.setHighlightedCalendarDayRangeStartCalend
 /**
  * Reset the start CalendarDay of the highlighted CalendarDayRange of this AvailabilityCalendar.
  */
-GetAway_AvailabilityCalendar.prototype.resetHighlightedCalendarDayRangeStartCalendarDay = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetHighlightedCalendarDayRangeStartCalendarDay = function () {
   this.highlightedCalendarDayRangeStartCalendarDay = null;
 
   // Trigger reset highlighted CalendarDayRange start CalendarDay event.
@@ -478,7 +478,7 @@ GetAway_AvailabilityCalendar.prototype.resetHighlightedCalendarDayRangeStartCale
  *
  * @returns {CalendarDayRange}
  */
-GetAway_AvailabilityCalendar.prototype.getHighlightedCalendarDayRangeEndCalendarDay = function () {
+TravelDuck_AvailabilityCalendar.prototype.getHighlightedCalendarDayRangeEndCalendarDay = function () {
   return this.highlightedCalendarDayRangeEndCalendarDay;
 };
 
@@ -487,7 +487,7 @@ GetAway_AvailabilityCalendar.prototype.getHighlightedCalendarDayRangeEndCalendar
  *
  * @param endCalendarDay
  */
-GetAway_AvailabilityCalendar.prototype.setHighlightedCalendarDayRangeEndCalendarDay = function (endCalendarDay) {
+TravelDuck_AvailabilityCalendar.prototype.setHighlightedCalendarDayRangeEndCalendarDay = function (endCalendarDay) {
   this.highlightedCalendarDayRangeEndCalendarDay = endCalendarDay;
 
   // Trigger change highlighted CalendarDayRange end CalendarDay event.
@@ -502,7 +502,7 @@ GetAway_AvailabilityCalendar.prototype.setHighlightedCalendarDayRangeEndCalendar
 /**
  * Reset the end CalendarDay of the highlighted CalendarDayRange of this AvailabilityCalendar.
  */
-GetAway_AvailabilityCalendar.prototype.resetHighlightedCalendarDayRangeEndCalendarDay = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetHighlightedCalendarDayRangeEndCalendarDay = function () {
   this.highlightedCalendarDayRangeEndCalendarDay = null;
 
   // Trigger reset highlighted CalendarDayRange end CalendarDay event.
@@ -522,7 +522,7 @@ GetAway_AvailabilityCalendar.prototype.resetHighlightedCalendarDayRangeEndCalend
  *
  * @returns {CalendarDayRange}
  */
-GetAway_AvailabilityCalendar.prototype.getHighlightedCalendarDayRange = function () {
+TravelDuck_AvailabilityCalendar.prototype.getHighlightedCalendarDayRange = function () {
 
   // Return null if incomplete range.
   if (!this.getHighlightedCalendarDayRangeStartCalendarDay() || !this.getHighlightedCalendarDayRangeEndCalendarDay()) {
@@ -537,7 +537,7 @@ GetAway_AvailabilityCalendar.prototype.getHighlightedCalendarDayRange = function
 /**
  * Set the highlighted CalendarDayRange of this AvailabilityCalendar.
  */
-GetAway_AvailabilityCalendar.prototype.setHighlightedCalendarDayRange = function (calendarDayRange) {
+TravelDuck_AvailabilityCalendar.prototype.setHighlightedCalendarDayRange = function (calendarDayRange) {
 
   // Reset the highlighted CalendarDayRange start and end CalendarDays - suppress event triggers.
   var suppressResetEventTriggers = true;
@@ -551,7 +551,7 @@ GetAway_AvailabilityCalendar.prototype.setHighlightedCalendarDayRange = function
 /**
  * Reset the highlighted CalendarDayRange of this AvailabilityCalendar.
  */
-GetAway_AvailabilityCalendar.prototype.resetHighlightedCalendarDayRange = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetHighlightedCalendarDayRange = function () {
   this.resetHighlightedCalendarDayRangeStartCalendarDay();
   this.resetHighlightedCalendarDayRangeEndCalendarDay();
 
@@ -565,7 +565,7 @@ GetAway_AvailabilityCalendar.prototype.resetHighlightedCalendarDayRange = functi
 /**
  * This function is called when the highlighted CalendarDayRange is changed.
  */
-GetAway_AvailabilityCalendar.prototype.highlightedCalendarDayRangeChanged = function () {
+TravelDuck_AvailabilityCalendar.prototype.highlightedCalendarDayRangeChanged = function () {
 
   // Trigger event function.
   this.getEventFunctions().onHighlightedCalendarDayRangeChange();
@@ -577,7 +577,7 @@ GetAway_AvailabilityCalendar.prototype.highlightedCalendarDayRangeChanged = func
  *
  * @returns {Amount}
  */
-GetAway_AvailabilityCalendar.prototype.getCalculatedAmountAccordingToServer = function () {
+TravelDuck_AvailabilityCalendar.prototype.getCalculatedAmountAccordingToServer = function () {
   return this.calculatedAmount;
 };
 
@@ -585,7 +585,7 @@ GetAway_AvailabilityCalendar.prototype.getCalculatedAmountAccordingToServer = fu
 /**
  * Refresh the calculated amount - if appropriate
  */
-GetAway_AvailabilityCalendar.prototype.refreshCalculatedAmount = function () {
+TravelDuck_AvailabilityCalendar.prototype.refreshCalculatedAmount = function () {
   // Only load amount from server when we have a valid range.
   if (this.getSelectedCalendarDayRange()) {
     this.loadCalculatedAmountAccordingToServer(function () {
@@ -601,7 +601,7 @@ GetAway_AvailabilityCalendar.prototype.refreshCalculatedAmount = function () {
  *
  * @param calculatedAmount
  */
-GetAway_AvailabilityCalendar.prototype.setCalculatedAmountAccordingToServer = function (calculatedAmount) {
+TravelDuck_AvailabilityCalendar.prototype.setCalculatedAmountAccordingToServer = function (calculatedAmount) {
   this.calculatedAmount = calculatedAmount;
 
   // Trigger calculated Amount changed event.
@@ -611,7 +611,7 @@ GetAway_AvailabilityCalendar.prototype.setCalculatedAmountAccordingToServer = fu
 /**
  * Reset the calculated Amount for the selected CalendarDayRange according to the server (make null).
  */
-GetAway_AvailabilityCalendar.prototype.resetCalculatedAmountAccordingToServer = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetCalculatedAmountAccordingToServer = function () {
   this.calculatedAmount = null;
 
   // Trigger calculated Amount reset event.
@@ -630,7 +630,7 @@ GetAway_AvailabilityCalendar.prototype.resetCalculatedAmountAccordingToServer = 
  *
  * @returns {number}
  */
-GetAway_AvailabilityCalendar.prototype.calculateNumberOfMonthsToDisplay = function () {
+TravelDuck_AvailabilityCalendar.prototype.calculateNumberOfMonthsToDisplay = function () {
   var monthsToDisplayToLeft = parseInt(this.getSettings().monthsToDisplayToLeft);
   var monthsToDisplayToRight = parseInt(this.getSettings().monthsToDisplayToRight);
   return monthsToDisplayToLeft + monthsToDisplayToRight + 1;
@@ -641,7 +641,7 @@ GetAway_AvailabilityCalendar.prototype.calculateNumberOfMonthsToDisplay = functi
  *
  * @return  number
  */
-GetAway_AvailabilityCalendar.prototype.getNumberOfMonthsToLoad = function () {
+TravelDuck_AvailabilityCalendar.prototype.getNumberOfMonthsToLoad = function () {
   var monthsToLeft = parseInt(this.getSettings().monthsToDisplayToLeft);
   var monthsToRight = parseInt(this.getSettings().monthsToDisplayToRight);
   return monthsToLeft + monthsToRight + 5;
@@ -652,7 +652,7 @@ GetAway_AvailabilityCalendar.prototype.getNumberOfMonthsToLoad = function () {
  *
  * @returns {CalendarMonth}
  */
-GetAway_AvailabilityCalendar.prototype.firstCalendarMonthToDisplay = function () {
+TravelDuck_AvailabilityCalendar.prototype.firstCalendarMonthToDisplay = function () {
   var mainCalendarMonth = this.getSettings().centralCalendarMonth;
   var monthsToDisplayToLeft = this.getSettings().monthsToDisplayToLeft;
   return mainCalendarMonth.minusMonths(monthsToDisplayToLeft);
@@ -663,7 +663,7 @@ GetAway_AvailabilityCalendar.prototype.firstCalendarMonthToDisplay = function ()
  *
  * @returns {CalendarMonth}
  */
-GetAway_AvailabilityCalendar.prototype.lastCalendarMonthToDisplay = function () {
+TravelDuck_AvailabilityCalendar.prototype.lastCalendarMonthToDisplay = function () {
   var mainCalendarMonth = this.getSettings().centralCalendarMonth;
   var monthsToRight = this.getSettings().monthsToDisplayToRight;
   return mainCalendarMonth.plusMonths(monthsToRight);
@@ -674,7 +674,7 @@ GetAway_AvailabilityCalendar.prototype.lastCalendarMonthToDisplay = function () 
  *
  * @returns {CalendarMonthRange}
  */
-GetAway_AvailabilityCalendar.prototype.calendarMonthRangeToLoad = function () {
+TravelDuck_AvailabilityCalendar.prototype.calendarMonthRangeToLoad = function () {
   return new CalendarMonthRange(this.firstCalendarMonthToDisplay(), this.lastCalendarMonthToDisplay());
 };
 
@@ -683,7 +683,7 @@ GetAway_AvailabilityCalendar.prototype.calendarMonthRangeToLoad = function () {
  *
  * @returns {CalendarMonth}
  */
-GetAway_AvailabilityCalendar.prototype.firstCalendarMonthToLoad = function () {
+TravelDuck_AvailabilityCalendar.prototype.firstCalendarMonthToLoad = function () {
   var mainCalendarMonth = this.getSettings().centralCalendarMonth;
   var monthsToLeft = this.getSettings().monthsToDisplayToLeft;
   return mainCalendarMonth.minusMonths(monthsToLeft + 2);
@@ -694,7 +694,7 @@ GetAway_AvailabilityCalendar.prototype.firstCalendarMonthToLoad = function () {
  *
  * @returns {CalendarMonth}
  */
-GetAway_AvailabilityCalendar.prototype.lastCalendarMonthToLoad = function () {
+TravelDuck_AvailabilityCalendar.prototype.lastCalendarMonthToLoad = function () {
   var mainCalendarMonth = this.getSettings().centralCalendarMonth;
   var monthsToRight = this.getSettings().monthsToDisplayToRight;
   return mainCalendarMonth.plusMonths(monthsToRight + 2);
@@ -705,7 +705,7 @@ GetAway_AvailabilityCalendar.prototype.lastCalendarMonthToLoad = function () {
  *
  * @returns {CalendarMonthRange}
  */
-GetAway_AvailabilityCalendar.prototype.calendarMonthRangeToLoad = function () {
+TravelDuck_AvailabilityCalendar.prototype.calendarMonthRangeToLoad = function () {
   return new CalendarMonthRange(this.firstCalendarMonthToLoad(), this.lastCalendarMonthToLoad());
 };
 
@@ -714,7 +714,7 @@ GetAway_AvailabilityCalendar.prototype.calendarMonthRangeToLoad = function () {
  *
  * @returns {CalendarDay}
  */
-GetAway_AvailabilityCalendar.prototype.greatestSelectableCalendarDay = function () {
+TravelDuck_AvailabilityCalendar.prototype.greatestSelectableCalendarDay = function () {
 
   var $this = this;
 
@@ -764,7 +764,7 @@ GetAway_AvailabilityCalendar.prototype.greatestSelectableCalendarDay = function 
 /**
  * Reset the availability according to the server.
  */
-GetAway_AvailabilityCalendar.prototype.resetAvailabilityAccordingToServer = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetAvailabilityAccordingToServer = function () {
   this.availableAccordingToServerCalendarDays = [];
   this.unavailableAccordingToServerCalendarDays = [];
 };
@@ -775,7 +775,7 @@ GetAway_AvailabilityCalendar.prototype.resetAvailabilityAccordingToServer = func
  * @param successCallback
  * @param failureCallback
  */
-GetAway_AvailabilityCalendar.prototype.
+TravelDuck_AvailabilityCalendar.prototype.
   loadAvailabilityAccordingToServer = function (successCallback, failureCallback) {
 
   // Ensure success and failure callbacks exist
@@ -811,7 +811,7 @@ GetAway_AvailabilityCalendar.prototype.
 /**
  * Reset the CalendarDay states. That is, no days are considered available, unavailable, selected or highlighted.
  */
-GetAway_AvailabilityCalendar.prototype.resetCalendarDayStates = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetCalendarDayStates = function () {
 
   this.allAvailableCalendarDays = [];
 
@@ -824,7 +824,7 @@ GetAway_AvailabilityCalendar.prototype.resetCalendarDayStates = function () {
 /**
  * Generate the state which each calendar day should be considered to have.
  */
-GetAway_AvailabilityCalendar.prototype.generateCalendarDayStates = function () {
+TravelDuck_AvailabilityCalendar.prototype.generateCalendarDayStates = function () {
 
   // Reset existing states.
   this.resetCalendarDayStates();
@@ -868,7 +868,7 @@ GetAway_AvailabilityCalendar.prototype.generateCalendarDayStates = function () {
 /**
  * Reset (clear) the colouring of the CalendarDays. That is, no days have been assigned any colouring.
  */
-GetAway_AvailabilityCalendar.prototype.resetCalendarDayColourings = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetCalendarDayColourings = function () {
 
   this.availableToAvailableColouredCalendarDays = [];
   this.availableToUnavailableColouredCalendarDays = [];
@@ -905,7 +905,7 @@ GetAway_AvailabilityCalendar.prototype.resetCalendarDayColourings = function () 
  * Generate the colouring of the CalendarDays to be displayed.
  * PRECONDITION: There are no state allocation conflicts. Each CalendarDay belongs to exactly one state.
  */
-GetAway_AvailabilityCalendar.prototype.generateCalendarDayColourings = function () {
+TravelDuck_AvailabilityCalendar.prototype.generateCalendarDayColourings = function () {
 
   var $this = this;
 
@@ -1079,7 +1079,7 @@ GetAway_AvailabilityCalendar.prototype.generateCalendarDayColourings = function 
 /**
  * Reset which CalendarDays which are selectable.
  */
-GetAway_AvailabilityCalendar.prototype.resetCalendarDaySelectability = function () {
+TravelDuck_AvailabilityCalendar.prototype.resetCalendarDaySelectability = function () {
 
   this.selectableCalendarDays = [];
 };
@@ -1087,7 +1087,7 @@ GetAway_AvailabilityCalendar.prototype.resetCalendarDaySelectability = function 
 /**
  * Generate the CalendarDay selectability.
  */
-GetAway_AvailabilityCalendar.prototype.generateCalendarDaySelectability = function () {
+TravelDuck_AvailabilityCalendar.prototype.generateCalendarDaySelectability = function () {
 
   var $this = this;
 
@@ -1115,11 +1115,11 @@ GetAway_AvailabilityCalendar.prototype.generateCalendarDaySelectability = functi
       var selectableAccordingToModeAndAvailability = false;
 
       // Select start mode.
-      if ($this.getSettings().mode == GetAway_AvailabilityCalendar.Modes.SELECT_START) {
+      if ($this.getSettings().mode == TravelDuck_AvailabilityCalendar.Modes.SELECT_START) {
         selectableAccordingToModeAndAvailability = currentDayIsAvailable;
 
         // Select end mode.
-      } else if ($this.getSettings().mode == GetAway_AvailabilityCalendar.Modes.SELECT_END) {
+      } else if ($this.getSettings().mode == TravelDuck_AvailabilityCalendar.Modes.SELECT_END) {
         selectableAccordingToModeAndAvailability = previousDayIsAvailable &&
           currentDay.isGreaterThan($this.getSelectedCalendarDayRangeStartCalendarDay()) &&
           currentDay.isLessThanOrEqualTo(greatestSelectableCalendarDay);
@@ -1142,7 +1142,7 @@ GetAway_AvailabilityCalendar.prototype.generateCalendarDaySelectability = functi
  * @param successCallback
  * @param failureCallback
  */
-GetAway_AvailabilityCalendar.prototype.updateAvailability = function (successCallback, failureCallback) {
+TravelDuck_AvailabilityCalendar.prototype.updateAvailability = function (successCallback, failureCallback) {
 
   // Ensure success and failure callbacks exist
   successCallback = !successCallback ? function () {
@@ -1180,7 +1180,7 @@ GetAway_AvailabilityCalendar.prototype.updateAvailability = function (successCal
 /**
  * Load the calculated price for the selected CalendarDayRange.
  */
-GetAway_AvailabilityCalendar.prototype.loadCalculatedAmountAccordingToServer = function (successCallback, failureCallback) {
+TravelDuck_AvailabilityCalendar.prototype.loadCalculatedAmountAccordingToServer = function (successCallback, failureCallback) {
 
   // Ensure success and failure callbacks exist
   successCallback = !successCallback ? function () {
@@ -1235,8 +1235,8 @@ GetAway_AvailabilityCalendar.prototype.loadCalculatedAmountAccordingToServer = f
  * Put this AvailabilityCalendar into DISPLAY mode. Shows the availability of the property but does not allow the user
  * to select dates.
  */
-GetAway_AvailabilityCalendar.prototype.changeModeToDisplay = function () {
-  this.getSettings().mode = GetAway_AvailabilityCalendar.Modes.DISPLAY;
+TravelDuck_AvailabilityCalendar.prototype.changeModeToDisplay = function () {
+  this.getSettings().mode = TravelDuck_AvailabilityCalendar.Modes.DISPLAY;
 
   this.resetHighlightedCalendarDayRange();
 
@@ -1248,8 +1248,8 @@ GetAway_AvailabilityCalendar.prototype.changeModeToDisplay = function () {
  * Put this AvailabilityCalendar into SELECT_START mode. Allows the selection of a start CalendarDay for the selected
  * CalendarDayRange.
  */
-GetAway_AvailabilityCalendar.prototype.changeModeToSelectStart = function () {
-  this.getSettings().mode = GetAway_AvailabilityCalendar.Modes.SELECT_START;
+TravelDuck_AvailabilityCalendar.prototype.changeModeToSelectStart = function () {
+  this.getSettings().mode = TravelDuck_AvailabilityCalendar.Modes.SELECT_START;
 
   // Clear any existing selected CalendarDayRange.
   this.resetSelectedCalendarDayRange();
@@ -1262,8 +1262,8 @@ GetAway_AvailabilityCalendar.prototype.changeModeToSelectStart = function () {
  * Put this AvailabilityCalendar into SELECT_END mode. Allows the selection of an end CalendarDay for the selected
  * CalendarDayRange.
  */
-GetAway_AvailabilityCalendar.prototype.changeModeToSelectEnd = function () {
-  this.getSettings().mode = GetAway_AvailabilityCalendar.Modes.SELECT_END;
+TravelDuck_AvailabilityCalendar.prototype.changeModeToSelectEnd = function () {
+  this.getSettings().mode = TravelDuck_AvailabilityCalendar.Modes.SELECT_END;
 
   // We must have a start date before we can select an end date.
   if (!this.getSelectedCalendarDayRangeStartCalendarDay()) {
@@ -1278,7 +1278,7 @@ GetAway_AvailabilityCalendar.prototype.changeModeToSelectEnd = function () {
 /**
  * Refresh this AvailabilityCalendar.
  */
-GetAway_AvailabilityCalendar.prototype.refresh = function () {
+TravelDuck_AvailabilityCalendar.prototype.refresh = function () {
 
   // Ensure success and failure callbacks exist
   var successCallback = !arguments[0] ? function () {
@@ -1303,7 +1303,7 @@ GetAway_AvailabilityCalendar.prototype.refresh = function () {
 /**
  * Draw the AvailabilityCalendar using jQuery ui date picker.
  */
-GetAway_AvailabilityCalendar.prototype.draw = function () {
+TravelDuck_AvailabilityCalendar.prototype.draw = function () {
 
   var $this = this;
 
@@ -1432,13 +1432,13 @@ GetAway_AvailabilityCalendar.prototype.draw = function () {
         switch ($this.getSettings().mode) {
 
           // Select start mode
-          case GetAway_AvailabilityCalendar.Modes.SELECT_START:
+          case TravelDuck_AvailabilityCalendar.Modes.SELECT_START:
             $this.setSelectedCalendarDayRangeStartCalendarDay(calendarDay);
             $this.changeModeToSelectEnd();
             break;
 
           // Select end mode
-          case GetAway_AvailabilityCalendar.Modes.SELECT_END:
+          case TravelDuck_AvailabilityCalendar.Modes.SELECT_END:
             $this.setSelectedCalendarDayRangeEndCalendarDay(calendarDay);
             $this.changeModeToDisplay();
             break;
@@ -1461,10 +1461,10 @@ GetAway_AvailabilityCalendar.prototype.draw = function () {
 /**
  * Attach the required mouse events to the jQuery ui date picker.
  */
-GetAway_AvailabilityCalendar.prototype.attachMouseEventsToDatepicker = function () {
+TravelDuck_AvailabilityCalendar.prototype.attachMouseEventsToDatepicker = function () {
   var $this = this;
 
-  if ($this.getSettings().mode == GetAway_AvailabilityCalendar.Modes.SELECT_END) {
+  if ($this.getSettings().mode == TravelDuck_AvailabilityCalendar.Modes.SELECT_END) {
 
     setTimeout(function () {
 
