@@ -258,7 +258,7 @@ TravelDuck_Property.prototype.bookingQuote = function (
   var propertyId = this.getId();
 
   $.ajax({
-    url: "https://get-away.com/api/rest/v1/property/" + propertyId + "/booking-quote?callback=?",
+    url: "https://travelduck.co/api/rest/v1/property/" + propertyId + "/booking-quote?callback=?",
     type: 'GET',
     dataType: 'jsonp',
     crossDomain: true,
@@ -320,7 +320,7 @@ TravelDuck_Property.prototype.availability = function(calendarMonthRange, succes
   var propertyId = this.getId();
 
   $.ajax({
-    url: 'https://get-away.com/api/rest/v1/property/' + propertyId + '/availability?jsoncallback=?',
+    url: 'https://travelduck.co/api/rest/v1/property/' + propertyId + '/availability?jsoncallback=?',
     type: 'GET',
     dataType: 'jsonp',
     crossDomain: true,
@@ -484,7 +484,7 @@ TravelDuck_Property.boundarySearch = function(
   failureCallback = failureCallback != null ? failureCallback : function() {};
 
   TravelDuck_Property.searchInProgress = $.ajax({
-    url: 'https://get-away.com/api/rest/v1/property/search/boundary?jsoncallback=?',
+    url: 'https://travelduck.co/api/rest/v1/property/search/boundary?jsoncallback=?',
     type: 'GET',
     dataType: 'jsonp',
     crossDomain: true,
@@ -546,7 +546,7 @@ TravelDuck_Property.search = function(
   noResultsCallback = noResultsCallback != null ? noResultsCallback : function() {};
 
   TravelDuck_Property.searchInProgress = $.ajax({
-    url: 'https://get-away.com/api/rest/v1/property/search-results?jsoncallback=?',
+    url: 'https://travelduck.co/api/rest/v1/property/search-results?jsoncallback=?',
     type: 'GET',
     dataType: 'jsonp',
     crossDomain: true,
