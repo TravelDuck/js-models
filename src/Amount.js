@@ -65,7 +65,11 @@ Amount.prototype.setCurrency = function(currency) {
 
 Amount.prototype.symbol = function() {
   if(this.getCurrency() == "GBP") {
-    return "£";
+    return "&pound;";
+  } else if(this.getCurrency() == "EUR") {
+    return "&euro;";
+  } else if(this.getCurrency() == "USD") {
+    return "&#36;";
   } else {
     return null;
   }
