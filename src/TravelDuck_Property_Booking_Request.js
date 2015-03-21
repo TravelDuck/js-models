@@ -16,7 +16,7 @@ TravelDuck_Property_Booking_Request.prototype.submit = function(successCallback,
 
 
   $.ajax({
-    url: 'https://get-away.com/api/rest/v1/property/booking/request',
+    url: 'https://travelduck.co/api/rest/v1/property/booking/request',
     type: 'POST',
     //dataType: 'json',
     crossDomain: true,
