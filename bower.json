@@ -15,6 +15,9 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/TravelDuck/js-models",
+  "dependencies": {
+    "jquery": "1.11.1"
+  },
   "ignore": [
     "**/.*",
     "node_modules",

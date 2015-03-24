@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Read Property from API Example</title>
+
+  <!-- Dependencies -->
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Models -->
+  <script src="../dist/models.min.js"></script>
+
+</head>
+<body>
+
+<script>
+
+  $(function() {
+
+    var propertyId = 1;
+
+    TravelDuck_Property.initialiseFromApi(propertyId, function(property) {
+
+      console.log(property.getId());
+      console.log(property.getName());
+      console.log(property.getChangeOverDay());
+      console.log(property.getBookingMode());
+
+    }, function() {
+      console.error("Failed to read Property from API.");
+    });
+
+  });
+
+</script>
+
+</body>
+</html>

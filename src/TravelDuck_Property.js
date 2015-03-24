@@ -9,56 +9,29 @@ TravelDuck_Property.searchInProgress = null;
  * @param propertyId
  */
 function TravelDuck_Property(propertyId) {
+  this.setAttributes([]);
   this.setId(propertyId);
-
-
 }
 
+TravelDuck_Property.initialiseFromApi = function(propertyId, successCallback, failureCallback) {
+  var property = new TravelDuck_Property(propertyId);
+  property.readFromApi(successCallback, failureCallback);
+};
 
-/**
- * Initialise a new property given a json object.
- * @param jsonObject
- */
-TravelDuck_Property.initialiseFromJsonObject = function(jsonObject) {
+TravelDuck_Property.prototype.getAttributes = function() {
+  return this.attributes;
+};
 
-  var property = new TravelDuck_Property(jsonObject.id);
+TravelDuck_Property.prototype.setAttributes = function(attributes) {
+  this.attributes = attributes;
+};
 
-  if(jsonObject["name"]) {
-    property.setName(jsonObject["name"]);
-  }
+TravelDuck_Property.prototype.getAttribute = function(key) {
+  return this.attributes[key];
+};
 
-  if(jsonObject["rooms"]) {
-    var rooms = jsonObject["rooms"];
-
-    if(rooms["bedrooms"]) {
-      var bedrooms = rooms["bedrooms"];
-      property.setNumberOfDoubleBedrooms(bedrooms["double"]);
-      property.setNumberOfTwinBedrooms(bedrooms["twin"]);
-      property.setNumberOfSingleBedrooms(bedrooms["single"]);
-      property.setNumberOfPutAwayBeds(bedrooms["putaway"]);
-    }
-  }
-
-  if(jsonObject["maxSleepingCapacity"]) {
-    property.setMaximumSleepingCapacity(jsonObject["maxSleepingCapacity"]);
-  }
-
-  // Read photos
-  if(jsonObject["ownerPropertyInformation"]) {
-    var ownerPropertyInformation = jsonObject["ownerPropertyInformation"];
-    if(ownerPropertyInformation["photos"]) {
-      var photos = ownerPropertyInformation["photos"];
-      photos = photos.map(function(photoJsonObject) {
-        return new TravelDuck_Photo(
-          photoJsonObject["id"], photoJsonObject["small-size-url"], photoJsonObject["medium-size-url"],
-          photoJsonObject["large-size-url"], photoJsonObject["original-size-url"]
-        );
-      });
-      property.setPhotos(photos);
-    }
-  }
-
-  return property;
+TravelDuck_Property.prototype.setAttribute = function(key, value) {
+  this.attributes[key] = value;
 };
 
 
@@ -68,8 +41,9 @@ TravelDuck_Property.initialiseFromJsonObject = function(jsonObject) {
  * @returns {Number}
  */
 TravelDuck_Property.prototype.getId = function() {
-  return parseInt(this.id);
+  return parseInt(this.getAttribute("id"));
 };
+
 
 /**
  * Set the id of this property.
@@ -77,8 +51,7 @@ TravelDuck_Property.prototype.getId = function() {
  * @param id
  */
 TravelDuck_Property.prototype.setId = function(id) {
-  // TODO: Validate the id is an integer > 0
-  this.id = id;
+  this.setAttribute("id", id);
 };
 
 
@@ -88,150 +61,110 @@ TravelDuck_Property.prototype.setId = function(id) {
  * @returns {string}
  */
 TravelDuck_Property.prototype.getName = function() {
-  return this.name;
+  return this.getAttribute("name")
 };
+
 
 /**
  * Set the name of this property.
  *
- * @param name
+ * @param {string} name
  */
 TravelDuck_Property.prototype.setName = function(name) {
-  this.name = name;
+  this.setAttribute("name", name);
+};
+
+
+/**
+ * Get the change over DayOfWeek of this Property.
+ *
+ * @returns {DayOfWeek}
+ */
+TravelDuck_Property.prototype.getChangeOverDay = function() {
+  return new DayOfWeek(this.getAttribute("change-over-day"));
+};
+
+
+/**
+ * Set the change over DayOfWeek of this Property.
+ *
+ * @param {DayOfWeek} changeOverDay
+ */
+TravelDuck_Property.prototype.setChangeOverDay = function(changeOverDay) {
+  this.setAttribute("change-over-day", changeOverDay.getNumber());
+};
+
+
+/**
+ * Get the booking mode of this Property.
+ *
+ * @returns {string}
+ */
+TravelDuck_Property.prototype.getBookingMode = function() {
+  return this.getAttribute("booking-mode");
+};
+
+
+/**
+ * Set he booking mode of this Property.
+ *
+ * @param bookingMode
+ */
+TravelDuck_Property.prototype.setBookingMode = function(bookingMode) {
+  this.setAttribute("booking-mode", bookingMode);
 };
 
 
 
 /**
- * Get the number of double bedrooms provided by this property.
+ * Read Property from the API.
  *
- * @returns {number}
+ * @param successCallback
+ * @param failureCallback
  */
-TravelDuck_Property.prototype.getNumberOfDoubleBedrooms = function() {
-  return this.numberOfDoubleBedrooms;
+TravelDuck_Property.prototype.readFromApi = function(successCallback, failureCallback) {
+
+  // Ensure success and failure callbacks exist
+  successCallback = !successCallback ? function () {
+  } : successCallback;
+  failureCallback = !failureCallback ? function () {
+  } : failureCallback;
+
+  var property = this;
+
+  $.ajax({
+    url: "https://travelduck.co/api/rest/v1/property/" + property.getId() + "?callback=?",
+    type: 'GET',
+    dataType: 'jsonp',
+    crossDomain: true,
+    cache: false,
+    timeout: 10000,
+    success: function (response) {
+
+      // Check for error
+      if (response.errors.length > 0) {
+        failureCallback();
+        return;
+      }
+
+      if(response) {
+        var data = response.payload;
+        if(data) {
+          property.setAttributes(data);
+          successCallback(property);
+        } else {
+          successCallback(null);
+        }
+      } else {
+        successCallback(null);
+      }
+
+    },
+    error: function () {
+      failureCallback();
+    }
+  });
 };
-
-
-/**
- * Set the number of double bedrooms provided by this property.
- *
- * @param numberOfDoubleBedrooms
- */
-TravelDuck_Property.prototype.setNumberOfDoubleBedrooms = function(numberOfDoubleBedrooms) {
-  this.numberOfDoubleBedrooms = numberOfDoubleBedrooms;
-};
-
-
-/**
- * Get the number of twin bedrooms provided by this property.
- *
- * @returns {number}
- */
-TravelDuck_Property.prototype.getNumberOfTwinBedrooms = function() {
-  return this.numberOfTwinBedrooms;
-};
-
-
-/**
- * Set the number of twin bedrooms provided by this property.
- *
- * @param numberOfTwinBedrooms
- */
-TravelDuck_Property.prototype.setNumberOfTwinBedrooms = function(numberOfTwinBedrooms) {
-  this.numberOfTwinBedrooms = numberOfTwinBedrooms;
-};
-
-
-/**
- * Get the number of single bedrooms provided by this property.
- *
- * @returns {number}
- */
-TravelDuck_Property.prototype.getNumberOfSingleBedrooms = function() {
-  return this.numberOfSingleBedrooms;
-};
-
-
-/**
- * Set the number of single bedrooms provided by this property.
- *
- * @param numberOfSingleBedrooms
- */
-TravelDuck_Property.prototype.setNumberOfSingleBedrooms = function(numberOfSingleBedrooms) {
-  this.numberOfSingleBedrooms = numberOfSingleBedrooms;
-};
-
-
-/**
- * Get the number of put-away beds provided by this property.
- *
- * @returns {number}
- */
-TravelDuck_Property.prototype.getNumberOfPutAwayBeds = function() {
-  return this.numberOfPutAwayBeds;
-};
-
-/**
- * Set the number of put-away beds provided by this property.
- *
- * @param numberOfPutAwayBeds
- */
-TravelDuck_Property.prototype.setNumberOfPutAwayBeds = function(numberOfPutAwayBeds) {
-  this.numberOfPutAwayBeds = numberOfPutAwayBeds;
-};
-
-
-/**
- * Get the maximum sleeping capacity of this property.
- *
- * @returns {number}
- */
-TravelDuck_Property.prototype.getMaximumSleepingCapacity = function() {
-  return this.maximumSleepingCapacity;
-};
-
-
-/**
- * Set the maximum sleeping capacity of this property.
- *
- * @param maximumSleepingCapacity
- */
-TravelDuck_Property.prototype.setMaximumSleepingCapacity = function(maximumSleepingCapacity) {
-  this.maximumSleepingCapacity = maximumSleepingCapacity;
-};
-
-
-
-/**
- * Get the photos associated with this property.
- *
- * @returns {array}
- */
-TravelDuck_Property.prototype.getPhotos = function() {
-  return this.photos;
-};
-
-
-/**
- * Set the photos associated with this property.
- *
- * @param photos
- */
-TravelDuck_Property.prototype.setPhotos = function(photos) {
-  this.photos = photos;
-};
-
-
-/**
- * Get the nth photo of this property.
- *
- * @returns {TravelDuck_Photo|null}
- */
-TravelDuck_Property.prototype.getPhoto = function(n) {
-  return this.getPhotos()[n-1];
-};
-
-
 
 
 /**
@@ -301,6 +234,7 @@ TravelDuck_Property.prototype.bookingQuote = function (
     }
   });
 };
+
 
 /**
  * Fetch the availability of this property for the given CalendarMonthRange.
