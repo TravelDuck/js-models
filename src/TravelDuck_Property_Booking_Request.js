@@ -23,7 +23,7 @@ TravelDuck_Property_Booking_Request.prototype.submit = function(successCallback,
     cache: false,
     timeout: 10000,
     data: {
-      "property-id": this.property.id,
+      "property-id": this.property.getId(),
       "start-date": this.dateRange.getStartCalendarDay().toYearMonthDayString(),
       "end-date": this.dateRange.getEndCalendarDay().toYearMonthDayString()
     },
