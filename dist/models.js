@@ -2622,7 +2622,7 @@ function TravelDuck_NewsletterSubscriber(email) {
 TravelDuck_NewsletterSubscriber.subscribeEmailAddress = function(emailAddress, successCallback, failureCallback) {
   $.ajax({
     url: "https://travelduck.co/api/rest/v1/newsletter/subscribe?jsoncallback=?",
-    method: "POST",
+    type: "POST",
     dataType: 'jsonp',
     crossDomain: true,
     cache: false,
