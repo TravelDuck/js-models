@@ -21,9 +21,9 @@ function TravelDuck_NewsletterSubscriber(email) {
  */
 TravelDuck_NewsletterSubscriber.subscribeEmailAddress = function(emailAddress, successCallback, failureCallback) {
   $.ajax({
-    url: "https://travelduck.co/api/rest/v1/newsletter/subscribe?jsoncallback=?",
+    url: "https://travelduck.co/api/rest/v1/newsletter/subscribe",
     type: "POST",
-    dataType: 'jsonp',
+    dataType: 'json',
     crossDomain: true,
     cache: false,
     timeout: 10000,
