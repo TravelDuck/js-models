@@ -31,6 +31,14 @@ TravelDuck_NewsletterSubscriber.subscribeEmailAddress = function(emailAddress, s
       "email": emailAddress
     },
     success: successCallback,
-    error: failureCallback
+    error: function(jqXHR, textStatus) {
+      var errors = [];
+      var message = "An error occurred";
+      if(textStatus == "error") {
+        errors = jqXHR["responseJSON"]["errors"];
+        message = errors[0]["message"];
+      }
+      failureCallback(message, errors);
+    }
   });
 };

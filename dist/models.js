@@ -2621,9 +2621,9 @@ function TravelDuck_NewsletterSubscriber(email) {
  */
 TravelDuck_NewsletterSubscriber.subscribeEmailAddress = function(emailAddress, successCallback, failureCallback) {
   $.ajax({
-    url: "https://travelduck.co/api/rest/v1/newsletter/subscribe?jsoncallback=?",
+    url: "https://travelduck.co/api/rest/v1/newsletter/subscribe",
     type: "POST",
-    dataType: 'jsonp',
+    dataType: 'json',
     crossDomain: true,
     cache: false,
     timeout: 10000,
@@ -2631,7 +2631,15 @@ TravelDuck_NewsletterSubscriber.subscribeEmailAddress = function(emailAddress, s
       "email": emailAddress
     },
     success: successCallback,
-    error: failureCallback
+    error: function(jqXHR, textStatus) {
+      var errors = [];
+      var message = "An error occurred";
+      if(textStatus == "error") {
+        errors = jqXHR["responseJSON"]["errors"];
+        message = errors[0]["message"];
+      }
+      failureCallback(message, errors);
+    }
   });
 };
 TravelDuck_Photo.prototype.constructor = TravelDuck_Photo;

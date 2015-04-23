@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Subscribe to newsletter using API Example</title>
+
+  <!-- Dependencies -->
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- Models -->
+  <script src="../dist/models.min.js"></script>
+
+</head>
+<body>
+
+<script>
+
+  $(function() {
+
+    var emailAddress = "test@travelduck.co";
+
+    TravelDuck_NewsletterSubscriber.subscribeEmailAddress(emailAddress, function() {
+      console.log("Successfully subscribed '" + emailAddress + "' to TravelDuck newsletter.");
+    }, function(message, errors) {
+      console.log("Failed to subscribe to newsletter.");
+      console.log("Reason: '" + message + "'");
+      console.log(errors);
+    });
+
+  });
+
+</script>
+
+</body>
+</html>
