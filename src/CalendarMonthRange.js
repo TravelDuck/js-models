@@ -63,16 +63,45 @@ CalendarMonthRange.prototype.inRange = function (testCalendarMonth) {
  * @returns {Array}
  */
 CalendarMonthRange.prototype.getArrayOfAllCalendarMonths = function () {
-  var CalendarMonths = [];
+  var calendarMonths = [];
 
   var currentCalendarMonth = this.getStartCalendarMonth();
   while (currentCalendarMonth.isLessThanOrEqualTo(this.getEndCalendarMonth())) {
 
-    CalendarMonths.push(currentCalendarMonth);
+    calendarMonths.push(currentCalendarMonth);
 
     // Next day
     currentCalendarMonth = currentCalendarMonth.next();
   }
 
-  return CalendarMonths;
+  return calendarMonths;
+};
+
+
+/**
+ * Convert this CalendarMonthRange to a CalendarDayRange.
+ * i.e -> first CalendarDay of the start CalendarMonth ...to... last CalendarDay of end CalendarMonth.
+ *
+ * @returns {CalendarDayRange}
+ */
+CalendarMonthRange.prototype.toCalendarDayRange = function () {
+  var firstCalendarMonth = this.getStartCalendarMonth();
+  var lastCalendarMonth = this.getEndCalendarMonth();
+
+  var firstCalendarDay = firstCalendarMonth.firstCalendarDay();
+  var lastCalendarDay = lastCalendarMonth.lastCalendarDay();
+
+  return new CalendarDayRange(firstCalendarDay, lastCalendarDay);
+};
+
+
+/**
+ * Get an array containing all CalendarDays between (and including) the start CalendarMonth (first CalendarDay) and
+ * end CalendarMonth (last CalendarDay) of this CalendarMonthRange.
+ *
+ * @returns {Array}
+ */
+CalendarMonthRange.prototype.getArrayOfAllCalendarDays = function () {
+  var calendarDayRange = this.toCalendarDayRange();
+  return calendarDayRange.getArrayOfAllCalendarDays();
 };
