@@ -107,7 +107,7 @@ CalendarDayRange.prototype.countDays = function () {
 
   var difference = end - start;
 
-  return Math.round(difference / oneDay);
+  return Math.round(difference / oneDay) + 1;
 };
 
 
