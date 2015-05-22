@@ -666,6 +666,33 @@ CalendarDayRange.prototype.getArrayOfAllCalendarDaysExcludingEndCalendarDay = fu
   calendarDays.remove(this.getEndCalendarDay());
   return calendarDays;
 };
+
+
+/**
+ * Count the number of days in this CalendarDayRange.
+ *
+ * @returns {number}
+ */
+CalendarDayRange.prototype.countDays = function () {
+  var start = this.getStartCalendarDay().toDate().getTime();
+  var end = this.getEndCalendarDay().toDate().getTime();
+
+  var oneDay = 1000 * 60 * 60 * 24;
+
+  var difference = end - start;
+
+  return Math.round(difference / oneDay);
+};
+
+
+/**
+ * Count the number of nights in this CalendarDayRange.
+ *
+ * @returns {number}
+ */
+CalendarDayRange.prototype.countNights = function () {
+  return this.countDays() - 1;
+};
 // Initialize CalendarMonth
 CalendarMonth.prototype.constructor = CalendarMonth;
 
