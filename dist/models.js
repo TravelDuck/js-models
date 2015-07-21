@@ -2839,6 +2839,62 @@ TravelDuck_Property.prototype.setBookingMode = function(bookingMode) {
 };
 
 
+/**
+ * Does this property have a minimum price currently available?
+ *
+ * @returns {boolean}
+ */
+TravelDuck_Property.prototype.hasMinimumPrice = function() {
+  return this.getMinimumPrice() != null;
+};
+
+
+/**
+ * Get the minimum price to booking this property for the property booking turn around period.
+ *
+ * @returns {Amount|null}
+ */
+TravelDuck_Property.prototype.getMinimumPrice = function() {
+  var data = this.getAttribute("minimum-price");
+  if(data && data["value"] && data["currency"]) {
+    return new Amount(data["value"], data["currency"]);
+  } else {
+    return null;
+  }
+};
+
+
+/**
+ * What is the turn around period of this property?
+ *
+ * @returns {string}
+ */
+TravelDuck_Property.prototype.getTurnAroundPeriod = function() {
+  return this.getAttribute("turn-around-period");
+};
+
+
+/**
+ * Does this property have a weekly turn around?
+ *
+ * @returns {boolean}
+ */
+TravelDuck_Property.prototype.hasWeeklyTurnAround = function() {
+  return this.getTurnAroundPeriod() == "weekly";
+};
+
+
+/**
+ * Does this property have nightly turn around?
+ *
+ * @returns {boolean}
+ */
+TravelDuck_Property.prototype.hasNightlyTurnAround = function() {
+  return this.getTurnAroundPeriod() == "nightly";
+};
+
+
+
 
 /**
  * Read Property from the API.
