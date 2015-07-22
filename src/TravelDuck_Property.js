@@ -96,6 +96,29 @@ TravelDuck_Property.prototype.setChangeOverDay = function(changeOverDay) {
 
 
 /**
+ * Get the minimum number of nights that must be charged when in nightly booking.
+ *
+ * @returns {int}
+ */
+TravelDuck_Property.prototype.getMinimumNights = function() {
+  return this.getAttribute("minimum-nights");
+};
+
+
+/**
+ * Set the minimum number of nights that must be charged when in nightly booking.
+ *
+ * @param {int} minimumNights
+ */
+TravelDuck_Property.prototype.setMinimumNights = function(minimumNights) {
+  this.setAttribute("minimum-nights", minimumNights);
+};
+
+
+
+
+
+/**
  * Get the booking mode of this Property.
  *
  * @returns {string}
