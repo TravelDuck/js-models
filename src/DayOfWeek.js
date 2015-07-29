@@ -19,7 +19,7 @@ DayOfWeek.prototype.getNumber = function() {
 };
 
 DayOfWeek.prototype.setNumber = function(number) {
-  this.number = number;
+  this.number = number % 7;
 };
 
 DayOfWeek.prototype.next = function() {
